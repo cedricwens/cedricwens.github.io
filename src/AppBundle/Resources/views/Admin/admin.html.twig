@@ -1,0 +1,293 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h4>{{ 'app.entity.user'|transchoice(10) }}</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    {% form_theme userform 'AppBundle:Form:admin.html.twig' %}
+                    {{ form_start(userform) }}
+                    <div id="user-toolbar">
+                        <div class="columns-right btn-group pull-left">
+                            {{ form_widget(userform.add) }}
+                            {{ form_widget(userform.edit) }}
+                            {{ form_widget(userform.delete) }}
+                            {{ form_widget(userform.lock) }}
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover" data-search="true" data-toggle="table" data-show-columns="true" data-select-item-name="user" data-toolbar="#user-toolbar" data-pagination="true" data-show-export="true">
+                        <thead>
+                        <tr>
+                            <th data-sortable="false" data-align="center" data-switchable="false"></th>
+                            <th data-sortable="true" data-field="lastname" >{{ 'app.form.last_name'|trans }}</th>
+                            <th data-sortable="true" data-field="firstname" >{{ 'app.form.first_name'|trans }}</th>
+                            <th data-sortable="true" data-field="department" >{{ 'app.form.department'|trans }}</th>
+                            <th data-sortable="true" data-field="organ" >{{ 'app.form.organ'|trans }}</th>
+                            <th data-sortable="true" data-field="fraction" >{{ 'app.form.fraction'|trans }}</th>
+                            <th data-sortable="true" data-field="function" >{{ 'app.form.function'|trans }}</th>
+                            <th data-sortable="true" data-field="status" >{{ 'app.form.status'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for item in userform.users %}
+                            <tr>
+                                <td>{{ form_row(item, { 'label': ' ' }) }}</td>
+                                <td>{{ users[loop.index-1].lastname }}</td>
+                                <td>{{ users[loop.index-1].firstname }}</td>
+                                <td>
+                                    {% for group in users[loop.index-1].usergroups %}
+                                        {% if (group.group.type == 'Department') and (group.group in organisation.groups) %}
+                                            <abbr title="{{ group.group.name|capitalize }}">{{ group.group.groupinfo.shortname }}</abbr>
+                                            <br />
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for group in users[loop.index-1].usergroups %}
+                                        {% if (group.group.type == 'Organ') and (group.group in organisation.groups) %}
+                                            <abbr title="{{ group.group.name|capitalize }}">{{ group.group.groupinfo.shortname }}</abbr>
+                                            <br />
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for group in users[loop.index-1].usergroups %}
+                                        {% if (group.group.type == 'Fraction') and (group.group in organisation.groups) %}
+                                            <abbr title="{{ group.group.name|capitalize }}">{{ group.group.groupinfo.shortname }}</abbr>
+                                            <br />
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for userroles in users[loop.index-1].usergroups %}
+                                        {% if userroles.group.id == app.session.get('department').id %}
+                                            {% for role in userroles.roles %}
+                                                    {% if role == 'ROLE_SUPER_ADMIN'%}
+                                                        {% set title = 'app.user.roles.super_admin'|trans %}
+                                                    {% elseif role == 'ROLE_ADMIN'%}
+                                                        {% set title = 'app.user.roles.admin'|trans %}
+                                                    {% elseif role == 'ROLE_USER+++'%}
+                                                        {% set title = 'app.user.roles.user+++'|trans %}
+                                                    {% elseif role == 'ROLE_USER++'%}
+                                                        {% set title = 'app.user.roles.user++'|trans %}
+                                                    {% elseif role == 'ROLE_USER+'%}
+                                                        {% set title = 'app.user.roles.user+'|trans %}
+                                                    {% elseif role == 'ROLE_USER'%}
+                                                        {% set title = 'app.user.roles.user'|trans %}
+                                                    {% endif %}
+                                                    <abbr title="{{ title }}">{{ role }}</abbr>
+                                                    <br />
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                {% if users[loop.index-1].locked == 0 %}
+                                    {% if users[loop.index-1].status == 0 %}
+                                        <td class="warning">
+                                    {% elseif users[loop.index-1].status == 2 %}
+                                        <td class="success">
+                                    {% else %}
+                                        <td class="danger">
+                                    {% endif %}
+                                    {{ 'app.user.status'|transchoice(users[loop.index-1].status) }}</td>
+                                {% else %}
+                                    <td class="danger">{{ 'app.user.status'|transchoice(1) }}</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {{ form_end(userform) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4>{{ 'app.entity.department'|transchoice(10) }}</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    {% form_theme departmentform 'AppBundle:Form:admin.html.twig' %}
+                    {{ form_start(departmentform) }}
+                    <div id="department-toolbar">
+                        <div class="columns-right btn-group pull-left">
+                            {{ form_widget(departmentform.add) }}
+                            {{ form_widget(departmentform.edit) }}
+                            {{ form_widget(departmentform.delete) }}
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover" data-search="true" data-toggle="table" data-show-columns="true" data-select-item-name="department" data-toolbar="#department-toolbar" data-pagination="true" data-show-export="true">
+                        <thead>
+                        <tr>
+                            <th data-sortable="false" data-align="center" data-switchable="false" class="col-xs-1"></th>
+                            <th data-sortable="true" data-field="name">{{ 'app.form.name'|trans }}</th>
+                            <th data-sortable="true" data-field="shortname" >{{ 'app.form.abbreviation'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in departmentform.groups %}
+                                {% if departments[loop.index-1].name != 'Start' %}
+                                    <tr>
+                                        <td>{{ form_row(item, { 'label': ' ' }) }}</td>
+                                        <td>{{ departments[loop.index-1].name }}</td>
+                                        <td>{{ departments[loop.index-1].groupInfo.shortName }} </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            {% do departmentform.groups.setRendered %}
+                        </tbody>
+                    </table>
+                    {{ form_end(departmentform) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4>{{ 'app.entity.organ'|transchoice(10) }}</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    {% form_theme organform 'AppBundle:Form:admin.html.twig' %}
+                    {{ form_start(organform) }}
+                    <div id="organ-toolbar">
+                        <div class="columns-right btn-group pull-left">
+                            {{ form_widget(organform.add) }}
+                            {{ form_widget(organform.edit) }}
+                            {{ form_widget(organform.delete) }}
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover" data-search="true" data-toggle="table" data-show-columns="true" data-select-item-name="organ" data-toolbar="#organ-toolbar" data-pagination="true" data-show-export="true">
+                        <thead>
+                        <tr>
+                            <th data-sortable="false" data-align="center" data-switchable="false" class="col-xs-1"></th>
+                            <th data-sortable="true" data-field="name">{{ 'app.form.name'|trans }}</th>
+                            <th data-sortable="true" data-field="shortname" >{{ 'app.form.abbreviation'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for item in organform.groups %}
+                            <tr>
+                                <td>{{ form_row(item, { 'label': ' ' }) }}</td>
+                                <td>{{ organs[loop.index-1].name }}</td>
+                                <td>{{ organs[loop.index-1].groupInfo.shortName }} </td>
+                            </tr>
+                        {% endfor %}
+                        {% do organform.groups.setRendered %}
+                        </tbody>
+                    </table>
+                    {{ form_end(organform) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <h4>{{ 'app.entity.fraction'|transchoice(10) }}</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                    {% form_theme fractionform 'AppBundle:Form:admin.html.twig' %}
+                    {{ form_start(fractionform) }}
+                    <div id="fraction-toolbar">
+                        <div class="columns-right btn-group pull-left">
+                            {{ form_widget(fractionform.add) }}
+                            {{ form_widget(fractionform.edit) }}
+                            {{ form_widget(fractionform.delete) }}
+                        </div>
+                    </div>
+
+                    <table class="table table-striped table-bordered table-hover" data-search="true" data-toggle="table" data-show-columns="true" data-select-item-name="fraction" data-toolbar="#fraction-toolbar" data-pagination="true" data-show-export="true">
+                        <thead>
+                        <tr>
+                            <th data-sortable="false" data-align="center" data-switchable="false" class="col-xs-1"></th>
+                            <th data-sortable="true" data-field="name">{{ 'app.form.name'|trans }}</th>
+                            <th data-sortable="true" data-field="shortname" >{{ 'app.form.abbreviation'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for item in fractionform.groups %}
+                            <tr>
+                                <td>{{ form_row(item, { 'label': ' ' }) }}</td>
+                                <td>{{ fractions[loop.index-1].name }}</td>
+                                <td>{{ fractions[loop.index-1].groupInfo.shortName }} </td>
+                            </tr>
+                        {% endfor %}
+                        {% do fractionform.groups.setRendered %}
+                        </tbody>
+                    </table>
+                    {{ form_end(fractionform) }}
+                </div>
+            </div>
+        </div>
+        {% if 'ROLE_SUPER_ADMIN' in app.session.get('roles') %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <h4>{{ 'app.entity.organisation'|transchoice(10) }}</h4>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        {% form_theme organisationform 'AppBundle:Form:admin.html.twig' %}
+                        {{ form_start(organisationform) }}
+                        <div id="organisation-toolbar">
+                            <div class="columns-right btn-group pull-left">
+                                {{ form_widget(organisationform.add) }}
+                                {{ form_widget(organisationform.edit) }}
+                                {{ form_widget(organisationform.delete) }}
+                            </div>
+                        </div>
+
+                        <table class="table table-striped table-bordered table-hover" data-search="true" data-toggle="table" data-show-columns="true" data-select-item-name="department" data-toolbar="#organisation-toolbar" data-pagination="true" data-show-export="true">
+                            <thead>
+                            <tr>
+                                <th data-sortable="false" data-align="center" data-switchable="false" class="col-xs-1"></th>
+                                <th data-sortable="true" data-field="name">{{ 'app.form.name'|trans }}</th>
+                                <th data-sortable="true" data-field="shortname" >{{ 'app.form.abbreviation'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for item in organisationform.groups %}
+                                <tr>
+                                    <td>{{ form_row(item, { 'label': ' ' }) }}</td>
+                                    <td>{{ organisations[loop.index-1].name }}</td>
+                                    <td>{{ organisations[loop.index-1].groupInfo.shortName }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {{ form_end(organisationform) }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

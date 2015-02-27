@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% form_theme form '@App/Form/fields.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

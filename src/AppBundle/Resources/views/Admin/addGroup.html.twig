@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% form_theme form '@App/Form/fields.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.shortname) }}
+    {#{% if type == 'Organisation' %}
+        <div class="form-group">
+            <label class="col-sm-4 control-label control-label required">{{ 'app.entity.department'|transchoice(1) }}</label>
+            <div class="col-sm-4">
+                {% for item in form.groups %}
+                    {% set id = item.vars.name %}
+                    {% for group in groups %}
+                        {% if group.id == id %}
+                            {% if group.type == 'Department' %}
+                                <div id="app_form_user_groups" class="">
+                                    <div class="checkbox">
+                                        <label class="">
+                                            {{ form_errors(item) }}
+                                            {{ form_widget(item) }}
+                                        </label>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label control-label required">{{ 'app.entity.organ'|transchoice(1) }}</label>
+            <div class="col-sm-4">
+                {% for item in form.groups %}
+                    {% set id = item.vars.name %}
+                    {% for group in groups %}
+                        {% if group.id == id %}
+                            {% if group.type == 'Organ' %}
+                                <div id="app_form_user_groups" class="">
+                                    <div class="checkbox">
+                                        <label class="">
+                                            {{ form_errors(item) }}
+                                            {{ form_widget(item) }}
+                                        </label>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label control-label required">{{ 'app.entity.fraction'|transchoice(1) }}</label>
+            <div class="col-sm-4">
+                {% for item in form.groups %}
+                    {% set id = item.vars.name %}
+                    {% for group in groups %}
+                        {% if group.id == id %}
+                            {% if group.type == 'Fraction' %}
+                                <div id="app_form_user_groups" class="">
+                                    <div class="checkbox">
+                                        <label class="">
+                                            {{ form_errors(item) }}
+                                            {{ form_widget(item) }}
+                                        </label>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        {% do form.groups.setRendered %}
+    {% endif %}#}
+    {{ form_end(form) }}
+{% endblock %}

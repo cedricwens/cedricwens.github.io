@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>{{ workflow.name }}</h1>
+    <table class="table table-striped table-bordered table-hover" data-toggle="table" data-show-columns="true" data-select-item-name="organ" data-toolbar="#organ-toolbar" data-pagination="true" data-show-export="true">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Group</th>
+                <th>Previous step</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for step in workflow.steps %}
+                <tr>
+                    <td>{{ step.id }}</td>
+                    <td>{{ step.name }}</td>
+                    <td>{{ step.group }}</td>
+                    <td>{% if step.relation.previousstep != null %}
+                            {{ step.relation.previousstep.id }}
+                        {% endif %}
+                    </td>
+                    <td>{{ step.duration|date("h:m:s") }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

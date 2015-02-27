@@ -1,0 +1,141 @@
+app:
+  # Core
+  core:
+    title: "CADSS"
+    report_problem: "Signaler un problème"
+    company: "ATA IT"
+    language: "Langue"
+
+  # App menu
+  menu:
+    home: "Start"
+    tasks: "Tâches"
+    agendas: "Agendas"
+    dossiers: "Dossiers"
+    meetings: "Réunions"
+    search: "Rechercher"
+    admin: "Admin"
+    my_profile: "Mon profil"
+    messages: "Messages"
+    settings: "Paramètres"
+    manual: "Manuel"
+    logout: "Déconnexion"
+    more: "Plus"
+    lock/unlock: "Verrouiller/Déverrouiller"
+    change_organisation: "Changer organisation"
+    change_department: "Changer départment"
+
+  # Admin
+  admin:
+    add_user: "Ajouter utilisateur"
+    edit_user: "Modifier utilisateur"
+    delete_user: "Supprimer utilisateur"
+    add_department: "Ajouter département"
+    edit_department: "Modifier département"
+    delete_department: "Supprimer département"
+
+  # Search:
+  search:
+    search_results_for: "Résultats de la recherche pour"
+    results: "Résultats"
+
+  # Entities
+  entity:
+    user: "{1} Utilisateur|[2,Inf] Utilisateurs"
+    department: "{1} Département|[2,Inf] Départements"
+    organisation: "{1} Organisation|[2,Inf] Organisations"
+    organ: "{1} Organe|[2,Inf] Organes"
+    fraction: "{1} Fraction|[2,Inf] Fractions"
+    address:
+      address: "Adresse"
+      street: "Rue"
+      nr: "Nombre"
+      zipcode: "Code postal"
+      city: "Ville"
+
+  # Action
+  action:
+    create: "Créer"
+    add: "Ajouter"
+    edit: "Modifier"
+    delete: "Supprimer"
+    save: "Enregistrer"
+    send: "Envoyer"
+    upload: "Télécharger"
+    merge: "Fusionner"
+    no_merge: "Pas fussioner"
+    abort: "Avorter"
+
+  # Messages
+  messages:
+    successfully_created: "Créé avec succès"
+    successfully_added: "Ajouté avec succès"
+    successfully_edited: "Modifié avec succès"
+    successfully_deleted: "Supprimé avec succès"
+    cant_delete_yourself: "Vous ne pouvez pas supprimer votre propre compte d'utilisateur"
+    successfully_locked: "Verrouillé avec succès"
+    successfully_unlocked: "Déverrouillé avec succès"
+    report_successfully_send: "Rapport envoyer avec succès"
+    select_user: "Sélectionnez un unitilateur"
+    settings_saved: "Paramètres enregistrés"
+
+  # Error
+  error:
+    error_occured: "Une erreur est survenue"
+    error_delete: "Une erreur se est produite tout en retirant %item%"
+    remove_users_from_group: "Vous devez supprimer tous les utilisateurs de ce groupe."
+    wrong_password: "Incorrect mot de passe"
+    passwords_do_not_match: "Les mots de passe ne correspondent pas"
+    none_found: "Aucun %group% trouvé"
+
+  #User
+  user:
+    status: '{0}Non activée|{1}Non-actif|{2}Actif'
+
+  # Form
+  form:
+    first_name: "Prénom"
+    last_name: "Nom de famille"
+    email: "Email"
+    department: "Département"
+    departments: "Départements"
+    organ: "Conseil"
+    fraction: "Fraction"
+    function: "Fonction"
+    status: "Statut"
+    name: "Nom"
+    abbreviation: "Abréviation"
+    username: "Nom d'utilisateur"
+    password: "Mot de passe"
+    please_sign_in: "Connecter vous s'il vous plaît"
+    address: "Adresse"
+    telnumber: "Numéro de téléphone"
+    newpass: "Nouveau mot de passe"
+    repeatpass: "Répéter mot de passe"
+    select_organisation: "Sélectionnez organisation"
+    select_department: "Sélectionnez département"
+    default: "Défaut"
+    description: "Description"
+    image: "Image"
+
+  # Calendar
+  calendar:
+    january: "Janvier"
+    february: "Février"
+    march: "Mars"
+    april: "Avril"
+    may: "Mai"
+    june: "Juin"
+    july: "Juillet"
+    august: "Août"
+    september: "Septembre"
+    october: "Octobre"
+    november: "Novembre"
+    december: "Décembre"
+
+  # Language
+  language:
+    deutsch: "Deutsch"
+    english: "English"
+    dutch: "Nederlands"
+    french: "Français"

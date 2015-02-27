@@ -1,0 +1,14 @@
+{{ form_start(search_form) }}
+<div class="navbar-form navbar-left">
+<div class="form-group">
+    <div class="right-inner-addon ">
+        <i class="glyphicon glyphicon-search"></i>
+        {{ form_widget(search_form.searchterm, { 'attr': {'class': 'form-control', 'placeholder': 'app.menu.search'|trans }}) }}
+        {#<input type="text" class="form-control" placeholder="{{ 'app.menu.search'|trans }}">#}
+    </div>
+</div>
+    {#{{ form_widget(search_form.search, { 'attr': {'class': 'btn btn-default'}}) }}#}
+    {% do search_form.search.setRendered %}
+{#<button type="submit" class="btn btn-default">{{ 'app.menu.search'|trans }}</button>#}
+</div>
+{{ form_end(search_form) }}

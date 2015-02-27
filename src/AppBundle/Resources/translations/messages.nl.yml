@@ -1,0 +1,179 @@
+app:
+  # Core
+  core:
+    title: "CADSS"
+    report_problem: "Probleem melden"
+    company: "ATA IT"
+    language: "Taal"
+
+  # App menu
+  menu:
+    home: "Start"
+    tasks: "Taken"
+    agendas: "Agenda's"
+    dossiers: "Dossiers"
+    meetings: "Vergaderingen"
+    search: "Zoeken"
+    admin: "Beheer"
+    my_profile: "Mijn profiel"
+    messages: "Berichten"
+    settings: "Instellingen"
+    manual: "Handleiding"
+    logout: "Afmelden"
+    more: "Meer"
+    lock/unlock: "Blokkeren/Deblokkeren"
+    change_organisation: "Organisatie wisselen"
+    change_department: "Departement wisselen"
+
+  # Admin
+  admin:
+    add_user: "Gebruiker toevoegen"
+    edit_user: "Gebruiker bewerken"
+    delete_user: "Gebruiker verwijderen"
+    add_department: "Departement toevoegen"
+    edit_department: "Departement wijzigen"
+    delete_department: "Departement verwijderen"
+    users: "Gebruikers"
+
+  # Search:
+  search:
+    search_results_for: "Zoekresultaten voor"
+    results: "Resultaten"
+
+  # Entities
+  entity:
+    user: "{1} Gebruiker|[2,Inf] Gebruikers"
+    department: "{1} Departement|[2,Inf] Departementen"
+    organisation: "{1} Organisatie|[2,Inf] Organisaties"
+    organ: "{1} Orgaan|[2,Inf] Organen"
+    fraction: "{1} Fractie|[2,Inf] Fracties"
+    address:
+      address: "Adres"
+      street: "Straat"
+      nr: "Nummer"
+      zipcode: "Postcode"
+      city: "Stad"
+    role: "{1} Rol|[2,Inf] Rollen"
+    workflow: "{1} Workflow|[2,Inf] Workflows"
+
+  # Action
+  action:
+    create: "Aanmaken"
+    add: "Toevoegen"
+    edit: "Bewerken"
+    delete: "Verwijderen"
+    save: "Opslaan"
+    send: "Versturen"
+    upload: "Uploaden"
+    merge: "Samenvoegen"
+    no_merge: "Niet samenvoegen"
+    abort: "Afbreken"
+    functionalities: "Functionaliteiten"
+
+  # Messages
+  messages:
+    successfully_created: "Succesvol aangemaakt"
+    successfully_added: "Succesvol toegevoegd"
+    successfully_edited: "Succesvol gewijzigd"
+    successfully_deleted: "Succesvol verwijderd"
+    cant_delete_yourself: "U kan uw eigen gebruikersaccount niet verwijderen."
+    successfully_locked: "Succesvol geblokkeerd"
+    successfully_unlocked: "Succesvol gedeblokkeerd"
+    report_successfully_send: "Rapport succesvol verzonden"
+    select_user: "Selecteer een gebruiker"
+    settings_saved: "Instellingen opgeslagen"
+    successfully_activated: "Account successvol geactiveerd"
+    select_dossier: "Selecteer een dossier"
+    user_detected_with_same_username_or_email: "Er bestaat reeds een gebruiker met dezelfde naam of emailadres."
+    select_user_role_for_department: "Selecteer de functionaliteiten waar %firstName% %lastName% toegang tot krijgt in dit department."
+    select_role: "Selecteer een rol"
+
+  # Error
+  error:
+    error_occured: "Er is een fout opgetreden"
+    error_delete: "Er is een fout opgetreden bij het verwijderen van %item%"
+    remove_users_from_group: "U dient eerst alle gebruikers uit deze groep te verwijderen"
+    wrong_password: "Foutief wachtwoord"
+    passwords_do_not_match: "De wachtwoorden komen niet overeen"
+    none_found: "Geen %group% gevonden"
+    conflict_detected: "Conflict gedetecteerd"
+
+  #User
+  user:
+    status: '{0}Niet geactiveerd|{1}Niet actief|{2}Actief'
+    existing_user: "Bestaande gebruiker"
+    new_user: "Nieuwe gebruiker"
+    roles:
+      super_admin: "Systeembeheerder"
+      admin: "Beheerder"
+      user+++: "Gebruiker met toegang tot vergaderingen"
+      user++: "Gebruiker met toegang tot agendas"
+      user+: "Gebruiker met toegang tot dossiers"
+      user: "Gebruiker"
+
+  # Form
+  form:
+    first_name: "Voornaam"
+    last_name: "Achternaam"
+    email: "E-mail"
+    department: "Departement"
+    departments: "Departementen"
+    organ: "Orgaan"
+    fraction: "Fractie"
+    function: "Functie"
+    status: "Status"
+    name: "Naam"
+    abbreviation: "Afkorting"
+    username: "Gebruikersnaam"
+    password: "Wachtwoord"
+    please_sign_in: "Gelieve in te loggen"
+    address: "Adres"
+    telnumber: "Telefoonnummer"
+    newpass: "Nieuw wachtwoord"
+    repeatpass: "Herhaal wachtwoord"
+    select_organisation: "Kies organisatie"
+    select_department: "Kies departement"
+    default: "Standaard"
+    description: "Beschrijving"
+    image: "Afbeelding"
+    next: "Volgende"
+
+  # Calendar
+  calendar:
+    january: "Januari"
+    february: "Februari"
+    march: "Maart"
+    april: "April"
+    may: "Mei"
+    june: "Juni"
+    july: "Juli"
+    august: "Augustus"
+    september: "September"
+    october: "Oktober"
+    november: "November"
+    december: "December"
+
+  # Language
+  language:
+    deutsch: "Deutsch"
+    english: "English"
+    dutch: "Nederlands"
+    french: "Français"
+
+  # dossier
+  dossier:
+    action_required: "Actie vereist"
+    my_dossiers: "Mijn dossiers"
+    other_dossiers: "Dossiers van anderen"
+    title: "Titel"
+    description: "Omschrijving"
+    author: "Auteur"
+    status: "Status"
+    date: "Datum"
+    deadline: "Deadline"
+    template: "Template"
+    create: "Dossier aanmaken"
+    new_template: "Nieuwe Template"
+    statusid: "{1}Aangemaakt|[-Inf,Inf]Beschadigd"
+
+

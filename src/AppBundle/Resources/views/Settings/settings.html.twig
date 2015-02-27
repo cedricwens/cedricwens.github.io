@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(settingsform, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(settingsform) }}
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">
+                <h3 class="panel-title">Settings</h3>
+            </div>-->
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left voffset2" >{{ 'app.menu.settings'|trans }}</h3>
+                <div class="btn-group pull-right">
+                    {{ form_widget(settingsform.save, {'attr': {'class': 'btn btn-success'}}) }}
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row-fluid">
+                    <div class="col-md-2">
+                        <div class="row text-center">
+                            <a href="{{ path('photo' ) }}"><img src="data:image/jpg;base64,{{ photo }}" alt="profile" class="profilePictureLarge center-block img-responsive"/></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ 'app.form.first_name'|trans }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">{{ user.firstname }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ 'app.form.status'|trans }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">{{ 'app.user.status'|transchoice(user.status) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ 'app.form.last_name'|trans }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">{{ user.lastname }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.organisations) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.organisations) }}
+                                            {{ form_widget(settingsform.organisations) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.email) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.email) }}
+                                            {{ form_widget(settingsform.email) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.departments) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.departments) }}
+                                            {{ form_widget(settingsform.departments) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.street) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.street) }}
+                                            {{ form_widget(settingsform.street) }}
+                                        </p>
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.nr) }}
+                                            {{ form_widget(settingsform.nr) }}
+                                        </p>
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.zipcode) }}
+                                            {{ form_widget(settingsform.zipcode) }}
+                                        </p>
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.city) }}
+                                            {{ form_widget(settingsform.city) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ 'app.core.language'|trans }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            <ul class="lang-menu">
+                                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">{{ 'app.language.deutsch'|trans }}</a></li>
+                                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">{{ 'app.language.english'|trans }}</a></li>
+                                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">{{ 'app.language.french'|trans }}</a></li>
+                                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'nl'})) }}">{{ 'app.language.dutch'|trans }}</a></li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.telnumber) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.telnumber) }}
+                                            {{ form_widget(settingsform.telnumber) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.password) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.password) }}
+                                            {{ form_widget(settingsform.password) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.newpass.first) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.newpass.first) }}
+                                            {{ form_widget(settingsform.newpass.first) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">{{ form_label(settingsform.newpass.second) }}</label>
+                                    <div class="col-sm-7">
+                                        <p class="form-control-static">
+                                            {{ form_errors(settingsform.newpass.second) }}
+                                            {{ form_widget(settingsform.newpass.second) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{ form_end(settingsform) }}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Calendar color</h3>
+        </div>
+        <div class="panel-body">
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Holiday</h3>
+        </div>
+        <div class="panel-body">
+
+        </div>
+    </div>
+{% endblock %}

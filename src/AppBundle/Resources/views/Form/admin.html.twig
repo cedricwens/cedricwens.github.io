@@ -1,0 +1,13 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+{% block form_row %}
+        <div class="search">
+                {{ form_label(form, label , { 'label_attr': {'class': 'col-sm-4 control-label'} }) }}
+                <div class="col-sm-4">
+                        {{ form_widget(form) }}
+                </div>
+        </div>
+{% endblock %}
+{% block checkbox_widget %}
+        <style type="text/css">.form-group{margin-bottom: 0px}</style>
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endblock %}

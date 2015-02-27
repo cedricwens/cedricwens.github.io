@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left voffset2" >{{ 'app.menu.my_profile'|trans }}</h3>
+        {% if loggedin_user.id == user.id %}
+            <div class="btn-group pull-right">
+                <a href="{{ path('settings')}}" type="button" class="btn btn-primary">{{ 'app.action.edit'|trans }}</a>
+            </div>
+        {% endif %}
+    </div>
+    <!--<div class="panel-heading clearfix">
+        <h3 class="panel-title" style="padding-top: 7.5px;">{{ 'app.menu.my_profile'|trans }}</h3>
+    </div>-->
+    <div class="panel-body">
+        <div class="row-fluid">
+            <div class="col-md-2">
+                <div class="row text-center">
+                    <!--<a href="{{ path('photo', {'username': user.username, 'path': 'settings'} ) }}">-->
+                        <img src="data:image/jpg;base64,{{ photo }}" alt="profile" class="profilePictureLarge center-block img-responsive"/>
+                    <!--</a>-->
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.first_name'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{ user.firstname }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.last_name'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{ user.lastname }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.email'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static"><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.address'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">
+                                    <a href="http://maps.google.com/?t=h&q={{ userGroup.groupInfo.address.street }} {{ userGroup.groupInfo.address.nr }} {{ userGroup.groupInfo.address.zipcode }} {{ userGroup.groupInfo.address.city}}">
+                                        {{ userGroup.groupInfo.address.street }} {{ userGroup.groupInfo.address.nr }}<br />
+                                        {{ userGroup.groupInfo.address.zipcode }} {{ userGroup.groupInfo.address.city}}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.telnumber'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{ userGroup.groupInfo.tel }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.form.status'|trans }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">{{ 'app.user.status'|transchoice(user.status) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.entity.organisation'|transchoice(10) }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">
+                                    {% set var = 0 %}
+                                    {% for group in groups %}
+                                        {% if group.group.type == 'Organisation' %}
+                                            {% set var = 1 %}
+                                            {{ group.group.name }}<br />
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if var == 0 %}
+                                        {{ 'app.error.none_found'|trans({'%group%': 'app.entity.organisation'|transchoice(10)|lower}) }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label form-control-static">{{ 'app.entity.fraction'|transchoice(10) }}</label>
+                            <div class="col-sm-7">
+                                <p class="form-control-static">
+                                    {% set var = 0 %}
+                                    {% for group in groups %}
+                                        {% if group.group.type == 'Fraction' %}
+                                            {% set var = 1 %}
+                                            {#<a href="{{ group_url(group.group)|raw }}">{{ group.group.groupinfo.shortname }}</a>#}
+                                            {{group_url(group.group)|raw}}<br />
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if var == 0 %}
+                                        {{ 'app.error.none_found'|trans({'%group%': 'app.entity.fraction'|transchoice(10)|lower}) }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

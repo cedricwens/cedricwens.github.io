@@ -1,0 +1,141 @@
+app:
+  # Core
+  core:
+    title: "CADSS"
+    report_problem: "Problem melden"
+    company: "ATA IT"
+    language: "Sprache"
+
+  # App menu
+  menu:
+    home: "Start"
+    tasks: "Aufgaben"
+    agendas: "Agenden"
+    dossiers: "Akten"
+    meetings: "Sitzungen"
+    search: "Suche"
+    admin: "Admin"
+    my_profile: "Mein Profil"
+    messages: "Nachrichten"
+    settings: "Einstellungen"
+    manual: "Handbuch"
+    logout: "Ausloggen"
+    more: "Mehr"
+    lock/unlock: "Sperren/Entsperren"
+    change_organisation: "Organisation ändern"
+    change_department: "Abteilung ändern"
+
+  # Admin
+  admin:
+    add_user: "Benutzer hunzufügen"
+    edit_user: "Benutzer bearbeiten"
+    delete_user: "Benutzer löschen"
+    add_department: "Abteilung hunzufügen"
+    edit_department: "Abteilung bearbeiten"
+    delete_department: "Abteilung löschen"
+
+  # Search:
+  search:
+    search_results_for: "Suchergebnisse für"
+    results: "Ergebnisse"
+
+  # Entities
+  entity:
+    user: "{1} Benutzer|[2,Inf] Benutzer"
+    department: "{1} Abteilung|[2,Inf] Abteilungen"
+    organisation: "{1} Organisation|[2,Inf] Organisationen"
+    organ: "{1} Organ|[2,Inf] Organe"
+    fraction: "{1} Fraktion|[2,Inf] Fraktionen"
+    address:
+      address: "Anschrift"
+      street: "Straße"
+      nr: "Hausnummer"
+      zipcode: "PLZ"
+      city: "Stadt"
+
+  # Action
+  action:
+    create: "Schaffen"
+    add: "Hinzufügen"
+    edit: "Bearbeiten"
+    delete: "Löschen"
+    save: "Speichern"
+    send: "Schicken"
+    upload: "Hochladen"
+    merge: "Zusammenführen"
+    no_merge: "Nicht zusammenführen"
+    abort: "Abbrechen"
+
+  # Messages
+  messages:
+    successfully_created: "Erfolgreich erstellt"
+    successfully_added: "Erfolgreich hinzugefügt"
+    successfully_edited: "Erfolgreich bearbeitet"
+    successfully_deleted: "Erfolgreich gelöscht"
+    cant_delete_yourself: "Sie können Ihr eigenes Benutzerkonto nicht löschen"
+    successfully_locked: "Erfolgreich abgeschlossen"
+    successfully_unlocked: "Erfolgreich entsperrt"
+    report_successfully_send: "Bericht erfolgreich senden"
+    select_user: "Wählen Sie einen Benutzer"
+    settings_saved: "Einstellungen gespeichert"
+
+  # Error
+  error:
+    error_occured: "Ein Fehler ist aufgetreten"
+    error_delete: "Beim Löschen des %item% ist ein Fehler aufgetreten"
+    remove_users_from_group: "Sie müssen alle Benutzer aus dieser Gruppe zu entfernen"
+    wrong_password: "Falsches Passwort"
+    passwords_do_not_match: "Passwörter stimmen nicht überein"
+    none_found: "Keine %group% gefunden"
+
+  #User
+  user:
+    status: '{0}Nicht-aktiviert|{1}Nicht-aktive|{2}aktiv'
+
+  # Form
+  form:
+    first_name: "Vorname"
+    last_name: "Nachname"
+    email: "E-mail"
+    department: "Abteilung"
+    departments: "Abteilungen"
+    organ: "Organe"
+    fraction: "Fraktion"
+    function: "Funktion"
+    status: "Status"
+    name: "Name"
+    abbreviation: "Abkürzung"
+    username: "Benutzername"
+    password: "Passwordt"
+    please_sign_in: "Bitte loggen Sie ein"
+    address: "Anschrift"
+    telnumber: "Telefonnummer"
+    newpass: "Neues Passwort"
+    repeatpass: "Passwort wiederholen"
+    select_organisation: "Wählen Organisation"
+    select_department: "Wählen Abteilung"
+    default: "Standard"
+    description: "Beschreibung"
+    image: "Bild"
+
+  # Calendar
+  calendar:
+    january: "Januar"
+    february: "Februar"
+    march: "März"
+    april: "April"
+    may: "Mai"
+    june: "Juni"
+    july: "Juli"
+    august: "August"
+    september: "September"
+    october: "Oktober"
+    november: "November"
+    december: "Dezember"
+
+  # Language
+  language:
+    deutsch: "Deutsch"
+    english: "English"
+    dutch: "Nederlands"
+    french: "Français"
